@@ -1,0 +1,4 @@
+FROM public.ecr.aws/gravitational/tbot-distroless:15.3.0 as tbot
+# tbot is built against glibc so won't run in alpine :|
+FROM ghcr.io/runatlantis/atlantis:v0.28.3-debian
+COPY --from=tbot /usr/local/bin/tbot  /usr/local/bin/tbot
